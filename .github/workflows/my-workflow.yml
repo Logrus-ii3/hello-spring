@@ -1,0 +1,21 @@
+name: Test Workflow By Logrus
+on:
+  push:
+    branch:
+      - master
+jobs:
+  First-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Add remote server to known hosts
+        run: |
+          ssh-keyscan grinenko@logrus.cc:11122 ssh-keyscan
+      - name: Do The Thing
+        run: |
+          ssh grinenko@logrus.cc:11122 << 'EOF'
+            echo "Hello, World!\n" >> github.txt
+          EOF
