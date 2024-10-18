@@ -13,7 +13,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Add remote server to known hosts
         run: |
-          ssh-keyscan grinenko@aion-docker ssh-keyscan
+          ssh-keyscan grinenko@logrus.cc >> ~/.ssh/known_hosts
       - name: Do The Thing
         run: |
           ssh -p 11122 grinenko@logrus.cc << 'EOF'
