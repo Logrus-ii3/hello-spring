@@ -16,6 +16,6 @@ jobs:
           ssh-keyscan grinenko@logrus.cc:11122 ssh-keyscan
       - name: Do The Thing
         run: |
-          ssh grinenko@logrus.cc:11122 << 'EOF'
+          ssh -p 11122 grinenko@logrus.cc << 'EOF'
             echo "Hello, World!\n" >> github.txt
           EOF
